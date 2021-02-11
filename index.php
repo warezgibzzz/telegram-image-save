@@ -33,8 +33,10 @@ try {
                 $json_response = json_decode($request->getBody(), true);
                 if ($json_response['ok'] == 'true') {
                     $telegram_file_link = 'https://api.telegram.org/file/bot' . Constants::$botApiKey . '/' . $json_response['result']['file_path'];
-                    $path = __DIR__ . '/images/' . $i . "/" . $date . ".jpg";  //0-1-2 folder
-                    file_put_contents($path, file_get_contents($telegram_file_link));
+                    if ($i == 0) {
+                        $path = "/home/bar/site/public/build/images/afisha.jpg"; //0-1-2 folder
+                        file_put_contents($path, file_get_contents($telegram_file_link));
+                    }
                     $i++;
                 }
             }
